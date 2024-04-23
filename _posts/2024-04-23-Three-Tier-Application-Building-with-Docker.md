@@ -40,23 +40,14 @@ frontend/
 In this Dockerfile you need to add the following code:- 
 
 ```powershell
-# Use official Node.js image as the base image
 FROM node:alpine as build
-# Set working directory
 WORKDIR /app
-# Copy package.json and package-lock.json files
 COPY package*.json ./
-# Install dependencies
 RUN npm install
-# Copy the entire project
 COPY . .
-# Build the project
 RUN npm run build
-# Use Nginx as the production server
 FROM nginx:alpine
-# Copy build files from the previous stage to Nginx directory
 COPY --from=build /app/build /usr/share/nginx/html
-# Expose port 80 to the outside world
 EXPOSE 80
 ```
 
@@ -84,19 +75,12 @@ backend/
 In this Dockerfile you need to add the following code:- 
 
 ```powershell
-# Use the official Node.js image as a base
 FROM node:alpine
-# Set the working directory in the container
 WORKDIR /app
-# Copy package.json and package-lock.json
 COPY package*.json ./
-# Install dependencies
 RUN npm install
-# Copy the entire project
 COPY . .
-# Expose port 3000 to the outside world
 EXPOSE 3000
-# Command to run the backend server
 CMD ["node", "server.js"]
 ```
 
