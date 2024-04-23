@@ -15,30 +15,31 @@ Docker Engine: Core component managing Docker containers and images.
 
 Today, we embark on an exhilarating journey through the realm of containerization, where we’ll Dockerize a magnificent three-tier application. Are you ready to dive into the world of Docker and witness the magic of containerization? Let’s get started!
 
-### Step 1: Setting Up Directories:
-Create a new folder name website_conatiner and in it add two new folder named as frontend and backend. Also create a YAML file named compose.yaml.
+### Step 1: Setting Up Directories and Docker:
+Create a new folder name website_conatiner and in it add two new folder named as frontend and backend.
 ```tsql
 website_container/
 │
 ├── frontend
 ├── backend
-└── compose.yaml
 ```
 Once you have the same file structure, you can move to the next part.
+
+Before jumping into coding, you make sure your docker is up to date and your Docker Desktop is running.
 
 ### Step 2: Setting Up the Frontend:
 Now we'll explore how to set up a frontend application using React and Docker.You must add your own react application in this directory. To create the conatiner of the react app, you need to create a Dockerfile in the frontend folder.
 
 ```tsql
-frontendd/
+frontend/
 │
 ├── your front end code
 └── Dockerfile
 ```
 
-In this Dockerfile u need to add the following code:- 
+In this Dockerfile you need to add the following code:- 
 
-```tsql
+```powershell
 # Use official Node.js image as the base image
 FROM node:alpine as build
 # Set working directory
@@ -59,19 +60,118 @@ COPY --from=build /app/build /usr/share/nginx/html
 EXPOSE 80
 ```
 
-#### Some T-SQL Code
-
-
-
-#### Some PowerShell Code
-
+Once your are done with these, you can now create the image for the same by executing the below code in the frontend directory:- 
 ```powershell
-Write-Host "This is a powershell Code block";
+docker build -t my-react-app .
+```
+A image name my-react-app will be created for the front end.
 
-# There are many other languages you can use, but the style has to be loaded first
-
-ForEach ($thing in $things) {
-    Write-Output "It highlights it using the GitHub style"
-}
+You can view the image in Docker Desktop or by executing below command:-
+```powershell
+docker images ls
 ```
 
+### Step 3: Setting Up the Backend:
+Similar to the frontend, we'll create a Dockerfile for our backend Node.js application..You must add your own node application in this directory. To create the conatiner of the node app, you need to create a Dockerfile in the backend folder.
+
+```tsql
+backend/
+│
+├── your back end code(app.js)
+└── Dockerfile
+```
+
+In this Dockerfile you need to add the following code:- 
+
+```powershell
+# Use the official Node.js image as a base
+FROM node:alpine
+# Set the working directory in the container
+WORKDIR /app
+# Copy package.json and package-lock.json
+COPY package*.json ./
+# Install dependencies
+RUN npm install
+# Copy the entire project
+COPY . .
+# Expose port 3000 to the outside world
+EXPOSE 3000
+# Command to run the backend server
+CMD ["node", "server.js"]
+```
+
+Once your are done with these, you can now create the image for the same by executing the below code in the frontend directory:- 
+```powershell
+docker build -t my-node-app .
+```
+A image name my-node-app will be created for the back end.
+
+If you have done till here.Great Work Guys!!!Now we will integrate these images.
+
+### Step 4: Final Integration:
+
+To integrate our Docker images seamlessly, we'll create a docker-compose.yml file in the root directory of our project. This file will define the services required for our blog application and specify how they should interact with each other.
+```tsql
+website_container/
+│
+├── frontend
+├── backend
+└── compose.yaml
+```
+Now in this compose.yaml file write the below code:- 
+
+```powershell
+version: '3'
+
+services:
+  frontend:
+    image: my-react-app
+    ports:
+      - "3000:3000"
+
+  backend:
+    image: my-node-app
+    restart: always
+    ports:
+      - "3001:3001"
+    depends_on:
+      - mongodb
+    environment:
+      - MONGO_URI="Your MongoDB URI"
+
+  mongodb:
+    image: mongo
+    restart: always
+    container_name: mongodb
+    ports:
+      - "27017:27017"
+    environment:
+      - MONGO_INITDB_DATABASE=test
+      - MONGO_INITDB_ROOT_USERNAME=usernmae
+      - MONGO_INITDB_ROOT_PASSWORD=pwd
+```
+
+#### Explaining the Compose File:
+
+We define three services: frontend, backend, and mongodb.
+The frontend service uses the my-react-app Docker image and maps port 3000 of the host to port 3000 of the container.
+The backend service uses the my-node-app Docker image, sets it to restart always, and maps port 3001.
+The mongodb service uses the official MongoDB Docker image, sets it to restart always, and maps port 27017.
+
+### Step 5: Running the images together:
+To start our integrated application, we simply run the "docker-compose up" command in the terminal. Docker Compose reads the docker-compose.yml file, pulls the necessary images, creates containers, and starts the services defined in the file.
+
+Once you execute the command you will be able to see the running containers in the Docker Desktop.
+
+Here's how you can view the output for each service in your Docker Compose setup:
+
+### Step 6: Accessing the website
+Frontend Service (frontend):
+You can access frontend by opening a web browser and navigating to http://localhost:3000. This URL corresponds to the port mapping defined in your docker-compose.yml file for the frontend service.
+Backend Service (backend):
+Your backend is running on http://localhost:3001
+MongoDB Service (mongodb):
+You generally won't directly view the output of the MongoDB service in a web browser. Instead, you can interact with the MongoDB database using a MongoDB client or command-line tools like mongo.
+
+### CONCLUSION
+By Dockerizing both the frontend and backend of our full-stack three-tier application, we've created portable and isolated environments for running our application. Docker simplifies the deployment process, ensures consistency across different environments, and enables scalability. This approach is beneficial for both development and production environments, making it easier to manage and scale our full-stack application effectively.
