@@ -1,6 +1,6 @@
 ## Building a Three-Layer Website with Docker: A Step-by-Step Guide
 
-### Introduction:
+### Introduction :
 In modern web development, containerization has become a popular approach for deploying applications due to its ease of use and scalability. Docker, a leading containerization platform, allows developers to encapsulate applications and their dependencies into containers. In this guide, we'll walk through the process of building a three-layer website using Docker containers, consisting of a frontend, a backend, and a database.
 
 Docker has revolutionized software development by popularizing containerization. Here's a brief overview of what Docker and containers are all about.Containers are lightweight, standalone packages that include all the necessary components to run an application. They share the host operating system kernel, making them highly efficient and portable.
