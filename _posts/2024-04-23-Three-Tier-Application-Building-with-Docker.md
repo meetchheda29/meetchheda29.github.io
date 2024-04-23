@@ -5,13 +5,13 @@ In modern web development, containerization has become a popular approach for de
 
 Docker has revolutionized software development by popularizing containerization. Here's a brief overview of what Docker and containers are all about.Containers are lightweight, standalone packages that include all the necessary components to run an application. They share the host operating system kernel, making them highly efficient and portable.
 
-Images: Immutable templates containing application code, dependencies, and settings.
+-**Images:** Immutable templates containing application code, dependencies, and settings.
 
-Containers: Runnable instances of Docker images, isolated from one another.
+-**Containers:** Runnable instances of Docker images, isolated from one another.
 
-Dockerfile: Text file specifying instructions for building Docker images.
+-**Dockerfile:** Text file specifying instructions for building Docker images.
 
-Docker Engine: Core component managing Docker containers and images.
+-**Docker Engine:** Core component managing Docker containers and images.
 
 Today, we embark on an exhilarating journey through the realm of containerization, where we’ll Dockerize a magnificent three-tier application. Are you ready to dive into the world of Docker and witness the magic of containerization? Let’s get started!
 
@@ -154,8 +154,11 @@ services:
 #### Explaining the Compose File:
 
 We define three services: frontend, backend, and mongodb.
+
 The frontend service uses the my-react-app Docker image and maps port 3000 of the host to port 3000 of the container.
+
 The backend service uses the my-node-app Docker image, sets it to restart always, and maps port 3001.
+
 The mongodb service uses the official MongoDB Docker image, sets it to restart always, and maps port 27017.
 
 ### Step 5: Running the images together:
@@ -166,10 +169,13 @@ Once you execute the command you will be able to see the running containers in t
 Here's how you can view the output for each service in your Docker Compose setup:
 
 ### Step 6: Accessing the website
+
 Frontend Service (frontend):
 You can access frontend by opening a web browser and navigating to http://localhost:3000. This URL corresponds to the port mapping defined in your docker-compose.yml file for the frontend service.
+
 Backend Service (backend):
 Your backend is running on http://localhost:3001
+
 MongoDB Service (mongodb):
 You generally won't directly view the output of the MongoDB service in a web browser. Instead, you can interact with the MongoDB database using a MongoDB client or command-line tools like mongo.
 
