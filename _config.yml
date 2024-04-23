@@ -1,6 +1,6 @@
 title: "Building a Three-Layer Website with Docker: A Step-by-Step Guide "
 author: "Meet Chheda"
-description: "Some short description of your blog can go here." # This will show up in places like twitter, linkedin, etc, if you share your sites url as a post.
+description: "In this tutorial, we'll walk through setting up a three-tier application using Docker. We'll create a multi-container setup consisting of a presentation tier (front end), an application tier (back end), and a data tier (database)." # This will show up in places like twitter, linkedin, etc, if you share your sites url as a post.
 
 # Email / Social media user names used by the minima theme:
 # All of these are optional and can be removed or commented out
