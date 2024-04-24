@@ -92,7 +92,7 @@ docker build -t my-node-app .
 ```
 A image name my-node-app will be created for the back end.
 
-![DockerDesktopDisplay](/img2.png)
+![DockerDesktopDisplay](/img1.png)
 
 If you have done till here.Great Work Guys!!!Now we will integrate these images.
 
