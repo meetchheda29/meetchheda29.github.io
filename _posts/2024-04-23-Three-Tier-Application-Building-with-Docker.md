@@ -40,15 +40,15 @@ frontend/
 In this Dockerfile you need to add the following code:- 
 
 ```powershell
-FROM node:alpine as build
+FROM node:16-alpine
 WORKDIR /app
 COPY package*.json ./
 RUN npm install
 COPY . .
 RUN npm run build
-FROM nginx:alpine
-COPY --from=build /app/build /usr/share/nginx/html
-EXPOSE 80
+EXPOSE 3000
+CMD ["npm", "start"]
+
 ```
 
 Once your are done with these, you can now create the image for the same by executing the below code in the frontend directory:- 
