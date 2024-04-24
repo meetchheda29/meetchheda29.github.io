@@ -25,6 +25,8 @@ website_container/
 ```
 Once you have the same file structure, you can move to the next part.
 
+![DockerDesktopDisplay](/images/dir.png)
+
 Before jumping into coding, you make sure your docker is up to date and your Docker Desktop is running.
 
 ### Step 2: Setting Up the Frontend:
