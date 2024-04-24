@@ -92,7 +92,7 @@ docker build -t my-node-app .
 ```
 A image name my-node-app will be created for the back end.
 
-![DockerDesktopDisplay](/images/img2.png)
+![DockerDesktopDisplay](/img2.png)
 
 If you have done till here.Great Work Guys!!!Now we will integrate these images.
 
@@ -158,7 +158,7 @@ Here's how you can view the output for each service in your Docker Compose setup
 
 ### Step 6: Accessing the website
 
-![Website](/images/img2.png)
+![Website](/img2.png)
 
 Frontend Service (frontend):
 You can access frontend by opening a web browser and navigating to http://localhost:3000. This URL corresponds to the port mapping defined in your docker-compose.yml file for the frontend service.
