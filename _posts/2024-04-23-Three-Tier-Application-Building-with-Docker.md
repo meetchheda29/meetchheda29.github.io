@@ -146,7 +146,7 @@ The backend service uses the my-node-app Docker image, sets it to restart always
 The mongodb service uses the official MongoDB Docker image, sets it to restart always, and maps port 27017.
 
 ### Step 5: Running the images together:
-To start our integrated application, we simply run the "docker-compose up" command in the terminal. Docker Compose reads the docker-compose.yml file, pulls the necessary images, creates containers, and starts the services defined in the file.
+To start our integrated application, we simply run the ```psql docker-compose up ``` command in the terminal. Docker Compose reads the docker-compose.yml file, pulls the necessary images, creates containers, and starts the services defined in the file.
 
 Once you execute the command you will be able to see the running containers in the Docker Desktop.
 
